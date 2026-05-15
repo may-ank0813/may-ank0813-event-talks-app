@@ -1,0 +1,34 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime files
+.pnpm/
+.pnpm-store/
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# dotenv environment variables file
+.env
+.env*.local
+
+# Temporary files
+*.tmp
+*~
+
+# Build artifacts (if any future build steps are added)
+dist/
+build/

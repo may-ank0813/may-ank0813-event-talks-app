@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Talks Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #categorySearch {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .talk-card {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .talk-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .talk-card.break {
+            background-color: #e0f7fa;
+            border-color: #b2ebf2;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .talk-card h2 {
+            margin-top: 0;
+            color: #0056b3;
+        }
+
+        .talk-card.break h2 {
+            color: #00796b;
+        }
+
+        .talk-card p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .talk-card .time {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .talk-card .speakers {
+            font-style: italic;
+            color: #666;
+        }
+
+        .talk-card .categories span {
+            display: inline-block;
+            background-color: #e2e6ea;
+            color: #0056b3;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Technical Talks Day</h1>
+        <p>A full day of insights and innovation.</p>
+    </header>
+
+    <main>
+        <div class="search-container">
+            <input type="text" id="categorySearch" placeholder="Search by category (e.g., AI, Web Dev)">
+        </div>
+        <div id="schedule">
+            <!-- Talks will be rendered here by JavaScript -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Technical Talks Event</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const talksData = [
+    {
+        id: 'talk-1',
+        title: 'Revolutionizing AI with Quantum Computing 1',
+        speakers: [ 'Dr. Ava Sharma', 'Dr. Ben Carter' ],
+        categories: [ 'AI', 'Quantum Computing', 'Future Tech' ],
+        duration: '1 hour',
+        description: 'This session explores the intersection of artificial intelligence and quantum computing,\n                      highlighting groundbreaking research and future possibilities. Discover how quantum\n                      algorithms can accelerate AI development and solve previously intractable problems.',
+        startTime: '10:00 AM',
+        endTime: '11:00 AM'
+    },
+    {
+        id: 'break-transition-1',
+        title: 'Transition Break',
+        speakers: [],
+        categories: [ 'Break' ],
+        duration: '10 minutes',
+        description: 'Time to switch rooms or grab a coffee!',
+        startTime: '11:00 AM',
+        endTime: '11:10 AM',
+        isBreak: true
+    },
+    {
+        id: 'talk-2',
+        title: 'Revolutionizing AI with Quantum Computing 2',
+        speakers: [ 'Dr. Ava Sharma', 'Dr. Ben Carter' ],
+        categories: [ 'Tech', 'AI', 'Quantum Computing' ],
+        duration: '1 hour',
+        description: 'This session explores the intersection of artificial intelligence and quantum computing,\n                      highlighting groundbreaking research and future possibilities. Discover how quantum\n                      algorithms can accelerate AI development and solve previously intractable problems.',
+        startTime: '11:10 AM',
+        endTime: '12:10 PM'
+    },
+    {
+        id: 'break-transition-2',
+        title: 'Transition Break',
+        speakers: [],
+        categories: [ 'Break' ],
+        duration: '10 minutes',
+        description: 'Time to switch rooms or grab a coffee!',
+        startTime: '12:10 PM',
+        endTime: '12:20 PM',
+        isBreak: true
+    },
+    {
+        id: 'talk-3',
+        title: 'Revolutionizing AI with Quantum Computing 3',
+        speakers: [ 'Dr. Ava Sharma', 'Dr. Ben Carter' ],
+        categories: [ 'Future Tech', 'AI', 'Quantum Computing' ],
+        duration: '1 hour',
+        description: 'This session explores the intersection of artificial intelligence and quantum computing,\n                      highlighting groundbreaking research and future possibilities. Discover how quantum\n                      algorithms can accelerate AI development and solve previously intractable problems.',
+        startTime: '12:20 PM',
+        endTime: '01:20 PM'
+    },
+    {
+        id: 'break-transition-3',
+        title: 'Transition Break',
+        speakers: [],
+        categories: [ 'Break' ],
+        duration: '10 minutes',
+        description: 'Short break before lunch.',
+        startTime: '01:20 PM',
+        endTime: '01:30 PM',
+        isBreak: true
+    },
+    {
+        id: 'lunch-break',
+        title: 'Lunch Break',
+        speakers: [],
+        categories: [ 'Break' ],
+        duration: '1 hour',
+        description: 'Enjoy a delicious lunch and network with fellow attendees!',
+        startTime: '01:30 PM',
+        endTime: '02:30 PM',
+        isBreak: true
+    },
+    {
+        id: 'talk-4',
+        title: 'Revolutionizing AI with Quantum Computing 4',
+        speakers: [ 'Dr. Ava Sharma', 'Dr. Ben Carter' ],
+        categories: [ 'AI', 'Quantum Computing', 'Future Tech' ],
+        duration: '1 hour',
+        description: 'This session explores the intersection of artificial intelligence and quantum computing,\n                      highlighting groundbreaking research and future possibilities. Discover how quantum\n                      algorithms can accelerate AI development and solve previously intractable problems.',
+        startTime: '02:30 PM',
+        endTime: '03:30 PM'
+    },
+    {
+        id: 'break-transition-4',
+        title: 'Transition Break',
+        speakers: [],
+        categories: [ 'Break' ],
+        duration: '10 minutes',
+        description: 'Time to switch rooms or grab a coffee!',
+        startTime: '03:30 PM',
+        endTime: '03:40 PM',
+        isBreak: true
+    },
+    {
+        id: 'talk-5',
+        title: 'Revolutionizing AI with Quantum Computing 5',
+        speakers: [ 'Dr. Ava Sharma', 'Dr. Ben Carter' ],
+        categories: [ 'Tech', 'AI', 'Quantum Computing' ],
+        duration: '1 hour',
+        description: 'This session explores the intersection of artificial intelligence and quantum computing,\n                      highlighting groundbreaking research and future possibilities. Discover how quantum\n                      algorithms can accelerate AI development and solve previously intractable problems.',
+        startTime: '03:40 PM',
+        endTime: '04:40 PM'
+    },
+    {
+        id: 'break-transition-5',
+        title: 'Transition Break',
+        speakers: [],
+        categories: [ 'Break' ],
+        duration: '10 minutes',
+        description: 'Time to switch rooms or grab a coffee!',
+        startTime: '04:40 PM',
+        endTime: '04:50 PM',
+        isBreak: true
+    },
+    {
+        id: 'talk-6',
+        title: 'Revolutionizing AI with Quantum Computing 6',
+        speakers: [ 'Dr. Ava Sharma', 'Dr. Ben Carter' ],
+        categories: [ 'Future Tech', 'AI', 'Quantum Computing' ],
+        duration: '1 hour',
+        description: 'This session explores the intersection of artificial intelligence and quantum computing,\n                      highlighting groundbreaking research and future possibilities. Discover how quantum\n                      algorithms can accelerate AI development and solve previously intractable problems.',
+        startTime: '04:50 PM',
+        endTime: '05:50 PM'
+    },
+    {
+        id: 'break-transition-final',
+        title: 'Transition Break',
+        speakers: [],
+        categories: [ 'Break' ],
+        duration: '10 minutes',
+        description: 'End of the day transition.',
+        startTime: '05:50 PM',
+        endTime: '06:00 PM',
+        isBreak: true
+    }
+];
+
+            const scheduleDiv = document.getElementById('schedule');
+            const categorySearchInput = document.getElementById('categorySearch');
+
+            function renderSchedule(filterCategory = '') {
+                scheduleDiv.innerHTML = ''; // Clear previous entries
+
+                const filteredTalks = talksData.filter(talk => {
+                    if (!filterCategory) return true;
+                    return talk.categories.some(cat => cat.toLowerCase().includes(filterCategory.toLowerCase()));
+                });
+
+                if (filteredTalks.length === 0) {
+                    scheduleDiv.innerHTML = '<p>No talks found matching your search.</p>';
+                    return;
+                }
+
+                filteredTalks.forEach(talk => {
+                    const talkCard = document.createElement('div');
+                    talkCard.classList.add('talk-card');
+                    if (talk.isBreak) {
+                        talkCard.classList.add('break');
+                    }
+
+                    let speakersHtml = '';
+                    if (talk.speakers && talk.speakers.length > 0 && !talk.isBreak) { // Only show speakers for actual talks
+                        speakersHtml = `<p class="speakers">Speaker(s): ${talk.speakers.join(', ')}</p>`;
+                    }
+
+                    let categoriesHtml = '';
+                    if (talk.categories && talk.categories.length > 0 && !talk.isBreak) { // Only show categories for actual talks
+                        categoriesHtml = `<p class="categories">Categories: ${talk.categories.map(cat => `<span>${cat}</span>`).join('')}</p>`;
+                    }
+
+                    talkCard.innerHTML = `
+                        <p class="time">${talk.startTime} - ${talk.endTime}</p>
+                        <h2>${talk.title}</h2>
+                        ${speakersHtml}
+                        ${categoriesHtml}
+                        <p>${talk.description}</p>
+                    `;
+                    scheduleDiv.appendChild(talkCard);
+                });
+            }
+
+            // Initial render
+            renderSchedule();
+
+            // Search functionality
+            categorySearchInput.addEventListener('input', (event) => {
+                renderSchedule(event.target.value);
+            });
+        });
+    </script>
+</body>
+</html>
